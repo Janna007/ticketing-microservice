@@ -1,4 +1,6 @@
 import { ValidationError } from "express-validator";
+import { CustomError } from "./custom-error";
+
 
 // interface customError{
 //    statusCode:number;
@@ -7,11 +9,12 @@ import { ValidationError } from "express-validator";
 //      field?:string
 //    }[]
 // }
+//instead of using interface we use abstract classes
 
-export class RequestValidationError extends Error {
+export class RequestValidationError extends CustomError {
    statusCode=400
    constructor(public errors :ValidationError[]){
-      super();
+      super("invalid request");
         
 
       //only beacuse we are extending a built in class
